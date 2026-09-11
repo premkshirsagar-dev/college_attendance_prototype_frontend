@@ -118,11 +118,7 @@ const TakeAttendance = () => {
                     <tr key={s.studentId} className="border-t border-slate-100">
                       <td className="px-6 py-3">{s.enrollmentNumber}</td>
                       <td className="px-6 py-3 font-medium">{s.name}</td>
-<<<<<<< HEAD
                       <td className="px-6 py-3">
-=======
-                     <td className="px-6 py-3">
->>>>>>> 7be488667e8e67a9d20ee62169f6e024eb33ee21
                         <label className="inline-flex items-center gap-2 cursor-pointer select-none">
                           <input
                             type="checkbox"
