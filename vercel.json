@@ -2,8 +2,6 @@
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
   ]
-<<<<<<< HEAD
 }
-=======
+
 }
->>>>>>> 20eaa273adac03fcae6db474676895e45d2b2401
