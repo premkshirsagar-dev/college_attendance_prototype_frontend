@@ -1,10 +1,9 @@
 // App.jsx
 // All application routes are defined here.
-<<<<<<< HEAD
+
 // NOTE: Admin is intentionally NOT part of this app — it's a separate
 // deployment (see /admin-frontend) so the public site has no trace of it.
-=======
->>>>>>> 20eaa273adac03fcae6db474676895e45d2b2401
+
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
@@ -14,10 +13,8 @@ import Landing from "./pages/Landing";
 import Unauthorized from "./pages/Unauthorized";
 import Login from "./pages/auth/Login";
 import StudentRegister from "./pages/auth/StudentRegister";
-<<<<<<< HEAD
-=======
-import TeacherRegister from "./pages/auth/TeacherRegister";
->>>>>>> 20eaa273adac03fcae6db474676895e45d2b2401
+
+// import TeacherRegister from "./pages/auth/TeacherRegister";
 
 import StudentDashboard from "./pages/student/StudentDashboard";
 import StudentProfile from "./pages/student/StudentProfile";
@@ -38,11 +35,7 @@ function App() {
           <Route path="/login/student" element={<Login role="student" />} />
           <Route path="/login/teacher" element={<Login role="teacher" />} />
           <Route path="/register/student" element={<StudentRegister />} />
-<<<<<<< HEAD
           {/* No /register/teacher, no admin routes at all in this app */}
-=======
-          <Route path="/register/teacher" element={<TeacherRegister />} />
->>>>>>> 20eaa273adac03fcae6db474676895e45d2b2401
           <Route path="/unauthorized" element={<Unauthorized />} />
 
           {/* Student (protected) */}
