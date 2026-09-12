@@ -1,9 +1,7 @@
 // pages/auth/Login.jsx
- 
 // Handles Student and Teacher login, based on the `role` prop.
 // Note: Teacher has no registration link — Teacher accounts are created by an Admin
 // (on the separate admin-frontend app).
-// One component handles both Student and Teacher login, based on the `role` prop.
 
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -16,7 +14,6 @@ const DASHBOARD_PATH = {
   teacher: "/teacher/dashboard",
 };
 
-
 const Login = ({ role }) => {
   const [form, setForm] = useState({ email: "", password: "" });
   const [message, setMessage] = useState(null);
@@ -25,8 +22,6 @@ const Login = ({ role }) => {
   const navigate = useNavigate();
 
   const isStudent = role === "student";
-
-  const registerPath = isStudent ? "/register/student" : "/register/teacher";
   const otherLoginPath = isStudent ? "/login/teacher" : "/login/student";
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
@@ -39,9 +34,6 @@ const Login = ({ role }) => {
       const res = await api.post(`/auth/${role}/login`, form);
       login(res.data.user, res.data.token);
       navigate(DASHBOARD_PATH[role]);
-
-      navigate(isStudent ? "/student/dashboard" : "/teacher/dashboard");
- 
     } catch (err) {
       setMessage({
         type: "error",
@@ -83,18 +75,11 @@ const Login = ({ role }) => {
             <Link to="/register/student" className="text-brand-600 font-medium">Register here</Link>
           </p>
         )}
-       
         {!isStudent && (
           <p className="text-sm text-slate-400 mt-5 text-center">
             Teacher accounts are created by an Administrator.
           </p>
         )}
-
-        <p className="text-sm text-slate-500 mt-5 text-center">
-          Don't have an account?{" "}
-          <Link to={registerPath} className="text-brand-600 font-medium">Register here</Link>
-        </p>
- 
         <p className="text-sm text-center mt-2">
           <Link to={otherLoginPath} className="text-slate-400">
             Login as {isStudent ? "Teacher" : "Student"} instead
@@ -109,6 +94,3 @@ const Login = ({ role }) => {
 };
 
 export default Login;
- 
-// every thing is working proprly instead on link student and teacher both cannt be avle to login with exsiting data and tell me why in this frontend folder the teacher registration  file working cause it has admin responsibility
-
