@@ -83,6 +83,7 @@ const Login = ({ role }) => {
             <Link to="/register/student" className="text-brand-600 font-medium">Register here</Link>
           </p>
         )}
+       
         {!isStudent && (
           <p className="text-sm text-slate-400 mt-5 text-center">
             Teacher accounts are created by an Administrator.
