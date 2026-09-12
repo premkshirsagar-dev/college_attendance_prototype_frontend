@@ -44,12 +44,7 @@ const Landing = () => {
                 Teacher accounts are created by an administrator.
               </p>
 
-              {/* <Link
-                to="/register/teacher"
-                className="border border-brand-600 text-brand-600 hover:bg-brand-50 font-medium py-2.5 rounded-lg transition"
-              >
-                Teacher Registration
-              </Link> */}
+              
             </div>
           </div>
         </div>
