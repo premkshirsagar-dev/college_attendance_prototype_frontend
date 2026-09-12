@@ -1,7 +1,11 @@
 // pages/auth/Login.jsx
+<<<<<<< HEAD
 // Handles Student and Teacher login, based on the `role` prop.
 // Note: Teacher has no registration link — Teacher accounts are created by an Admin
 // (on the separate admin-frontend app).
+=======
+// One component handles both Student and Teacher login, based on the `role` prop.
+>>>>>>> 20eaa273adac03fcae6db474676895e45d2b2401
 
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -9,11 +13,14 @@ import api from "../../api/axios";
 import { useAuth } from "../../context/AuthContext";
 import Alert from "../../components/Alert";
 
+<<<<<<< HEAD
 const DASHBOARD_PATH = {
   student: "/student/dashboard",
   teacher: "/teacher/dashboard",
 };
 
+=======
+>>>>>>> 20eaa273adac03fcae6db474676895e45d2b2401
 const Login = ({ role }) => {
   const [form, setForm] = useState({ email: "", password: "" });
   const [message, setMessage] = useState(null);
@@ -22,6 +29,10 @@ const Login = ({ role }) => {
   const navigate = useNavigate();
 
   const isStudent = role === "student";
+<<<<<<< HEAD
+=======
+  const registerPath = isStudent ? "/register/student" : "/register/teacher";
+>>>>>>> 20eaa273adac03fcae6db474676895e45d2b2401
   const otherLoginPath = isStudent ? "/login/teacher" : "/login/student";
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
@@ -33,7 +44,11 @@ const Login = ({ role }) => {
     try {
       const res = await api.post(`/auth/${role}/login`, form);
       login(res.data.user, res.data.token);
+<<<<<<< HEAD
       navigate(DASHBOARD_PATH[role]);
+=======
+      navigate(isStudent ? "/student/dashboard" : "/teacher/dashboard");
+>>>>>>> 20eaa273adac03fcae6db474676895e45d2b2401
     } catch (err) {
       setMessage({
         type: "error",
@@ -69,6 +84,7 @@ const Login = ({ role }) => {
           </button>
         </form>
 
+<<<<<<< HEAD
         {isStudent && (
           <p className="text-sm text-slate-500 mt-5 text-center">
             Don't have an account?{" "}
@@ -80,6 +96,12 @@ const Login = ({ role }) => {
             Teacher accounts are created by an Administrator.
           </p>
         )}
+=======
+        <p className="text-sm text-slate-500 mt-5 text-center">
+          Don't have an account?{" "}
+          <Link to={registerPath} className="text-brand-600 font-medium">Register here</Link>
+        </p>
+>>>>>>> 20eaa273adac03fcae6db474676895e45d2b2401
         <p className="text-sm text-center mt-2">
           <Link to={otherLoginPath} className="text-slate-400">
             Login as {isStudent ? "Teacher" : "Student"} instead
@@ -94,4 +116,7 @@ const Login = ({ role }) => {
 };
 
 export default Login;
+<<<<<<< HEAD
 // every thing is working proprly instead on link student and teacher both cannt be avle to login with exsiting data and tell me why in this frontend folder the teacher registration  file working cause it has admin responsibility
+=======
+>>>>>>> 20eaa273adac03fcae6db474676895e45d2b2401

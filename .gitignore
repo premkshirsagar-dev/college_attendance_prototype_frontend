@@ -1,4 +1,8 @@
 # Logs
+<<<<<<< HEAD
+=======
+.env
+>>>>>>> 20eaa273adac03fcae6db474676895e45d2b2401
 logs
 *.log
 npm-debug.log*
@@ -11,6 +15,15 @@ node_modules
 dist
 dist-ssr
 *.local
+<<<<<<< HEAD
+=======
+.env
+.env.local
+.env.*.local
+.env.producation
+
+
+>>>>>>> 20eaa273adac03fcae6db474676895e45d2b2401
 
 # Editor directories and files
 .vscode/*

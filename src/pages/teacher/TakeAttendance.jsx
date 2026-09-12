@@ -119,6 +119,7 @@ const TakeAttendance = () => {
                       <td className="px-6 py-3">{s.enrollmentNumber}</td>
                       <td className="px-6 py-3 font-medium">{s.name}</td>
                       <td className="px-6 py-3">
+<<<<<<< HEAD
                         <select
                           value={s.status}
                           onChange={(e) => setStatus(s.studentId, e.target.value)}
@@ -129,6 +130,19 @@ const TakeAttendance = () => {
                           <option value="Present">Present</option>
                           <option value="Absent">Absent</option>
                         </select>
+=======
+                        <label className="inline-flex items-center gap-2 cursor-pointer select-none">
+                          <input
+                            type="checkbox"
+                            checked={s.status === "Present"}
+                            onChange={(e) => setStatus(s.studentId, e.target.checked ? "Present" : "Absent")}
+                            className="w-5 h-5 accent-green-600 cursor-pointer"
+                          />
+                          <span className={`text-sm font-medium ${s.status === "Present" ? "text-green-700" : "text-red-700"}`}>
+                            {s.status}
+                          </span>
+                        </label>
+>>>>>>> 20eaa273adac03fcae6db474676895e45d2b2401
                       </td>
                     </tr>
                   ))}
