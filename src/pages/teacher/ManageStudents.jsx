@@ -79,11 +79,17 @@ const ManageStudents = () => {
           </Link>
         </div>
 
-        {message && <div className="mb-4"><Alert type={message.type} message={message.text} /></div>}
-        {error && <Alert type="error" message={error} />}
-        {loading && <Alert type="info" message="Loading..." />}
+      {message && <div className="mb-4"><Alert type={message.type} message={message.text} /></div>}
+{error && <Alert type="error" message={error} />}
+{loading && <Alert type="info" message="Loading..." />}
 
-        {!loading && (
+{!loading && !error && (
+  <p className="text-sm text-slate-500 mb-3">
+    Total Students: <span className="font-semibold text-slate-700">{students.length}</span>
+  </p>
+)}
+
+{!loading && (
           <div className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-x-auto">
             <table className="w-full text-sm min-w-[600px]">
               <thead className="bg-slate-50 text-slate-500 text-left">
