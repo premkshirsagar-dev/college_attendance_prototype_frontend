@@ -22,9 +22,9 @@ const LiveClock = () => {
   });
 
   return (
-    <div className="text-right leading-tight select-none">
-      <p className="text-sm font-semibold text-slate-700">{time}</p>
-      <p className="text-xs text-slate-400">{date}</p>
+    <div className="text-right leading-tight select-none whitespace-nowrap">
+      <p className="text-xs sm:text-sm font-semibold text-slate-700">{time}</p>
+      <p className="text-[10px] sm:text-xs text-slate-400">{date}</p>
     </div>
   );
 };
