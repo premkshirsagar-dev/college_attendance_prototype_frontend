@@ -24,6 +24,8 @@ const Navbar = ({ title }) => {
       >
         Logout
       </button>
+      <div>
+      <LiveClock/> </div>
     </nav>
   );
 };
