@@ -7,7 +7,9 @@ import api from "../../api/axios";
 import Navbar from "../../components/Navbar";
 import Alert from "../../components/Alert";
 
-const CLASS_OPTIONS = ["All Classes", "BCA 1st Year", "BCA 2nd Year", "BCA 3rd Year"];
+import { CLASS_OPTIONS as ALL_CLASSES } from "../../constants/classes";
+
+const CLASS_OPTIONS = ["All Classes", ...ALL_CLASSES];
 
 const ManageStudents = () => {
   const [students, setStudents] = useState([]);
