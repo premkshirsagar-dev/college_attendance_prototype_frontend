@@ -5,8 +5,8 @@ const Landing = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-brand-50 to-slate-100 px-4">
       <div className="max-w-2xl w-full text-center">
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-800 mb-2">
-          College Attendance Management System
+        <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-slate-800 mb-2">
+           College Attendance Management System
         </h1>
         <p className="text-slate-500 mb-10">
           Track attendance simply and accurately — for students and teachers.
