@@ -18,14 +18,14 @@ const Navbar = ({ title }) => {
         <h1 className="text-lg sm:text-xl font-bold text-brand-700">{title}</h1>
         {user && <p className="text-xs text-slate-500">Welcome, {user.name}</p>}
       </div>
+       <div>
+      <LiveClock/> </div>
       <button
         onClick={handleLogout}
-        className="text-sm font-medium text-white bg-brand-600 hover:bg-brand-700 transition px-4 py-2 rounded-lg"
-      >
+        className="text-sm font-medium text-white bg-brand-600 hover:bg-brand-700 transition px-4 py-2 rounded-lg" >
         Logout
       </button>
-      <div>
-      <LiveClock/> </div>
+     
     </nav>
   );
 };
