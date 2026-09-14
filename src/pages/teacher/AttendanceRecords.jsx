@@ -7,10 +7,12 @@ import { Link } from "react-router-dom";
 import api from "../../api/axios";
 import Navbar from "../../components/Navbar";
 import Alert from "../../components/Alert";
+import Alert from "../../components/Alert";
+import { CLASS_OPTIONS as ALL_CLASSES } from "../../constants/classes";
 
-const CLASS_OPTIONS = ["", "BCA 1st Year", "BCA 2nd Year", "BCA 3rd Year"];
+const CLASS_OPTIONS = ["", ...ALL_CLASSES];
 const STATUS_OPTIONS = ["", "Present", "Absent"];
-const RANKINGS_CLASS_OPTIONS = ["BCA 1st Year", "BCA 2nd Year", "BCA 3rd Year"];
+const RANKINGS_CLASS_OPTIONS = ALL_CLASSES;
 
 const currentMonthISO = () => new Date().toISOString().slice(0, 7);
 const currentYear = () => new Date().getFullYear().toString();
