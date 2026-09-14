@@ -1,6 +1,7 @@
 // components/Navbar.jsx
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import LiveClock from "./LiveClock";
 
 const Navbar = ({ title }) => {
   const { user, logout } = useAuth();
