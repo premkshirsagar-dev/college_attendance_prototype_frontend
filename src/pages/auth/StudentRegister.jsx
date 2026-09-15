@@ -4,8 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import api from "../../api/axios";
 import Alert from "../../components/Alert";
 
-import { CLASS_OPTIONS } from "../../constants/classes";
-
+import { CLASS_OPTIONS } from "../../context/classes";
 const StudentRegister = () => {
   const [form, setForm] = useState({
     name: "",
