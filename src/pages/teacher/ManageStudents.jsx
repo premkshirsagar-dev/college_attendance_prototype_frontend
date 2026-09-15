@@ -7,8 +7,7 @@ import api from "../../api/axios";
 import Navbar from "../../components/Navbar";
 import Alert from "../../components/Alert";
 
-import { CLASS_OPTIONS as ALL_CLASSES } from "../../constants/classes";
-
+import { CLASS_OPTIONS } from "../../context/classes";
 const CLASS_OPTIONS = ["All Classes", ...ALL_CLASSES];
 
 const ManageStudents = () => {
