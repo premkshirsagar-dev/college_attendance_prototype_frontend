@@ -1,4 +1,4 @@
-// constants/classes.js
+// context/classes.js
 // Single source of truth for every class/course offered by the college.
 // Every page that needs a class dropdown imports from here instead of
 // hardcoding its own list — add a new course ONCE, here, and it shows
