@@ -41,11 +41,10 @@ const TeacherDashboard = () => {
           </div>
         )}
 
-         <div className="grid sm:grid-cols-2 gap-4">
-          <NavCard to="/teacher/students" title="Manage Students" desc="View, add, edit, delete, search & filter students" />
+          <div className="grid sm:grid-cols-2 gap-4">
+          <NavCard to="/teacher/students" title="Students" desc="View, search & filter students in your classes" />
           <NavCard to="/teacher/attendance/take" title="Take Attendance" desc="Mark today's (or any date's) attendance by class" />
-          <NavCard to="/teacher/attendance/records" title="Attendance Records" desc="Browse & filter historical attendance" />
-          <NavCard to="/teacher/students" title="Search Students" desc="Find a student by name, email or enrollment no." />
+          <NavCard to="/teacher/attendance/records" title="Attendance Records" desc="Browse & filter historical attendance, view rankings" />
         </div>
       </div>
     </div>
