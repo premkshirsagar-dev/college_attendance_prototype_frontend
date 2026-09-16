@@ -5,8 +5,8 @@ const Landing = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-brand-50 to-slate-100 px-4">
       <div className="max-w-2xl w-full text-center">
-        <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-slate-800 mb-2">
-           College Attendance Management System
+        <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-800 mb-2">
+          College Attendance Management System
         </h1>
         <p className="text-slate-500 mb-10">
           Track attendance simply and accurately — for students and teachers.
@@ -22,12 +22,9 @@ const Landing = () => {
               >
                 Student Login
               </Link>
-              <Link
-                to="/register/student"
-                className="border border-brand-600 text-brand-600 hover:bg-brand-50 font-medium py-2.5 rounded-lg transition"
-              >
-                Student Registration
-              </Link>
+              <p className="text-xs text-slate-400 pt-1">
+                Student accounts are created by an administrator.
+              </p>
             </div>
           </div>
 
@@ -43,8 +40,6 @@ const Landing = () => {
               <p className="text-xs text-slate-400 pt-1">
                 Teacher accounts are created by an administrator.
               </p>
-
-              
             </div>
           </div>
         </div>
