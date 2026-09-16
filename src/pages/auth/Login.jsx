@@ -1,7 +1,6 @@
 // pages/auth/Login.jsx
-// Handles Student and Teacher login, based on the `role` prop.
-// Note: Teacher has no registration link — Teacher accounts are created by an Admin
-// (on the separate admin-frontend app).
+// Handles Student and Teacher login only. No registration links —
+// both account types are created exclusively by Admin.
 
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -69,17 +68,9 @@ const Login = ({ role }) => {
           </button>
         </form>
 
-        {isStudent && (
-          <p className="text-sm text-slate-500 mt-5 text-center">
-            Don't have an account?{" "}
-            <Link to="/register/student" className="text-brand-600 font-medium">Register here</Link>
-          </p>
-        )}
-        {!isStudent && (
-          <p className="text-sm text-slate-400 mt-5 text-center">
-            Teacher accounts are created by an Administrator.
-          </p>
-        )}
+        <p className="text-sm text-slate-400 mt-5 text-center">
+          {isStudent ? "Student" : "Teacher"} accounts are created by an Administrator.
+        </p>
         <p className="text-sm text-center mt-2">
           <Link to={otherLoginPath} className="text-slate-400">
             Login as {isStudent ? "Teacher" : "Student"} instead
