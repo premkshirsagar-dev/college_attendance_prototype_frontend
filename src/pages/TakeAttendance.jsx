@@ -112,7 +112,7 @@ const TakeAttendance = () => {
                 <tbody>
                   {students.map((s) => (
                     <tr key={s.studentId} className="border-t border-slate-100">
-                      <td className="px-4 sm:px-6 py-3 whitespace-nowrap">{s.enrollmentNumber}</td>
+                      <td className="px-4 sm:px-6 py-3 whitespace-nowrap">{s.studentCode}</td>
                       <td className="px-4 sm:px-6 py-3 font-medium whitespace-nowrap">{s.name}</td>
                       <td className="px-4 sm:px-6 py-3 whitespace-nowrap">
                         <label className="inline-flex items-center gap-2 cursor-pointer select-none">
