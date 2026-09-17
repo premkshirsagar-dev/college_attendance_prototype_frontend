@@ -7,8 +7,7 @@ import api from "../../api/axios";
 import Navbar from "../../components/Navbar";
 import Alert from "../../components/Alert";
 
-const CLASS_OPTIONS = ["BCA 1st Year", "BCA 2nd Year", "BCA 3rd Year"];
-
+import { CLASS_OPTIONS } from "../../constants/classes";
 const todayISO = () => new Date().toISOString().slice(0, 10);
 
 const TakeAttendance = () => {
@@ -70,8 +69,7 @@ const TakeAttendance = () => {
     <div className="min-h-screen bg-slate-100">
       <Navbar title="Take Attendance" />
       <div className="max-w-3xl mx-auto px-4 sm:px-8 py-8">
-        <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 mb-6 flex flex-col sm:flex-row gap-4">
-          <div className="flex-1">
+        <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 mb-6 flex flex-col sm:flex-row gap-4">          <div className="flex-1">
             <label className="text-xs text-slate-500 font-medium">Class</label>
             <select
               value={selectedClass}
@@ -104,32 +102,21 @@ const TakeAttendance = () => {
               </button>
             </div>
 
-            <div className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden mb-6">
-              <table className="w-full text-sm">
+                      <div className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-x-auto mb-6">
+              <table className="w-full text-sm min-w-[480px]">
                 <thead className="bg-slate-50 text-slate-500 text-left">
                   <tr>
-                    <th className="px-6 py-3 font-medium">Enrollment</th>
-                    <th className="px-6 py-3 font-medium">Student Name</th>
-                    <th className="px-6 py-3 font-medium">Status</th>
+                    <th className="px-4 sm:px-6 py-3 font-medium whitespace-nowrap">Enrollment</th>
+                    <th className="px-4 sm:px-6 py-3 font-medium whitespace-nowrap">Student Name</th>
+                    <th className="px-4 sm:px-6 py-3 font-medium whitespace-nowrap">Status</th>
                   </tr>
                 </thead>
                 <tbody>
                   {students.map((s) => (
                     <tr key={s.studentId} className="border-t border-slate-100">
-                      <td className="px-6 py-3">{s.enrollmentNumber}</td>
-                      <td className="px-6 py-3 font-medium">{s.name}</td>
-                      <td className="px-6 py-3">
-                        <select
-                          value={s.status}
-                          onChange={(e) => setStatus(s.studentId, e.target.value)}
-                          className={`border rounded-lg px-3 py-1.5 text-sm font-medium ${
-                            s.status === "Present" ? "border-green-300 text-green-700 bg-green-50" : "border-red-300 text-red-700 bg-red-50"
-                          }`}
-                        >
-                          <option value="Present">Present</option>
-                          <option value="Absent">Absent</option>
-                        </select>
-
+                      <td className="px-4 sm:px-6 py-3 whitespace-nowrap">{s.enrollmentNumber}</td>
+                      <td className="px-4 sm:px-6 py-3 font-medium whitespace-nowrap">{s.name}</td>
+                      <td className="px-4 sm:px-6 py-3 whitespace-nowrap">
                         <label className="inline-flex items-center gap-2 cursor-pointer select-none">
                           <input
                             type="checkbox"

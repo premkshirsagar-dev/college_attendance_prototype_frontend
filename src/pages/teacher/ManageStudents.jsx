@@ -7,7 +7,9 @@ import api from "../../api/axios";
 import Navbar from "../../components/Navbar";
 import Alert from "../../components/Alert";
 
-const CLASS_OPTIONS = ["All Classes", "BCA 1st Year", "BCA 2nd Year", "BCA 3rd Year"];
+import { CLASS_OPTIONS as ALL_CLASSES } from "../../constants/classes";
+
+const CLASS_OPTIONS = ["All Classes", ...ALL_CLASSES];
 
 const ManageStudents = () => {
   const [students, setStudents] = useState([]);
@@ -79,11 +81,17 @@ const ManageStudents = () => {
           </Link>
         </div>
 
-        {message && <div className="mb-4"><Alert type={message.type} message={message.text} /></div>}
-        {error && <Alert type="error" message={error} />}
-        {loading && <Alert type="info" message="Loading..." />}
+      {message && <div className="mb-4"><Alert type={message.type} message={message.text} /></div>}
+{error && <Alert type="error" message={error} />}
+{loading && <Alert type="info" message="Loading..." />}
 
-        {!loading && (
+{!loading && !error && (
+  <p className="text-sm text-slate-500 mb-3">
+    Total Students: <span className="font-semibold text-slate-700">{students.length}</span>
+  </p>
+)}
+
+{!loading && (
           <div className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-x-auto">
             <table className="w-full text-sm min-w-[600px]">
               <thead className="bg-slate-50 text-slate-500 text-left">

@@ -7,8 +7,7 @@ import api from "../../api/axios";
 import Navbar from "../../components/Navbar";
 import Alert from "../../components/Alert";
 
-const CLASS_OPTIONS = ["BCA 1st Year", "BCA 2nd Year", "BCA 3rd Year"];
-
+import { CLASS_OPTIONS } from "../../constants/classes";
 const StudentForm = () => {
   const { id } = useParams();
   const isEdit = Boolean(id);
