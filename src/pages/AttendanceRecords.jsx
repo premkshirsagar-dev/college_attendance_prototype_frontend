@@ -1,14 +1,10 @@
-// pages/teacher/AttendanceRecords.jsx
-// Two tabs: filterable attendance history (Records), and a ranked
-// leaderboard of students by attendance % for a month or year (Rankings).
-
+// pages/AttendanceRecords.jsx
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import api from "../../api/axios";
-import Navbar from "../../components/Navbar";
-import Alert from "../../components/Alert";
-import Alert from "../../components/Alert";
-import { CLASS_OPTIONS as ALL_CLASSES } from "../../constants/classes";
+import api from "../api/axios";
+import Navbar from "../components/Navbar";
+import Alert from "../components/Alert";
+import { CLASS_OPTIONS as ALL_CLASSES } from "../context/classes";
 
 const CLASS_OPTIONS = ["", ...ALL_CLASSES];
 const STATUS_OPTIONS = ["", "Present", "Absent"];
@@ -42,7 +38,7 @@ const AttendanceRecords = () => {
       if (filters.class) params.class = filters.class;
       if (filters.date) params.date = filters.date;
       if (filters.status) params.status = filters.status;
-      const res = await api.get("/teacher/attendance", { params });
+      const res = await api.get("/admin/attendance", { params });
       setRecords(res.data);
     } catch (err) {
       setError(err.response?.data?.message || "Failed to load records.");
@@ -58,7 +54,7 @@ const AttendanceRecords = () => {
       const params = { class: rankClass };
       if (periodType === "month") params.month = month;
       else params.year = year;
-      const res = await api.get("/teacher/attendance/rankings", { params });
+      const res = await api.get("/admin/attendance/rankings", { params });
       setRankings(res.data);
     } catch (err) {
       setRankError(err.response?.data?.message || "Failed to load rankings.");
@@ -265,7 +261,7 @@ const AttendanceRecords = () => {
           </>
         )}
 
-        <Link to="/teacher/dashboard" className="text-brand-600 font-medium text-sm mt-6 inline-block">
+        <Link to="/dashboard" className="text-brand-600 font-medium text-sm mt-6 inline-block">
           ← Back to Dashboard
         </Link>
       </div>

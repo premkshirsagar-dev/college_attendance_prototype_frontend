@@ -1,13 +1,10 @@
-// pages/teacher/ManageStudents.jsx
-// Full student CRUD: list, search, filter by class, add, edit, delete.
-
+// pages/ManageStudents.jsx
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import api from "../../api/axios";
-import Navbar from "../../components/Navbar";
-import Alert from "../../components/Alert";
-
-import { CLASS_OPTIONS as ALL_CLASSES } from "../../constants/classes";
+import api from "../api/axios";
+import Navbar from "../components/Navbar";
+import Alert from "../components/Alert";
+import { CLASS_OPTIONS as ALL_CLASSES } from "../context/classes";
 
 const CLASS_OPTIONS = ["All Classes", ...ALL_CLASSES];
 
@@ -24,7 +21,7 @@ const ManageStudents = () => {
     setLoading(true);
     setError(null);
     try {
-      const res = await api.get("/teacher/students", {
+      const res = await api.get("/admin/students", {
         params: { search: search || undefined, class: classFilter },
       });
       setStudents(res.data);
@@ -43,7 +40,7 @@ const ManageStudents = () => {
 
   const confirmDelete = async () => {
     try {
-      await api.delete(`/teacher/students/${deleteTarget._id}`);
+      await api.delete(`/admin/students/${deleteTarget._id}`);
       setMessage({ type: "success", text: "Student deleted successfully." });
       setDeleteTarget(null);
       fetchStudents();
@@ -60,7 +57,7 @@ const ManageStudents = () => {
         <div className="flex flex-col sm:flex-row justify-between gap-4 mb-6">
           <div className="flex flex-col sm:flex-row gap-3 flex-1">
             <input
-              placeholder="Search by name, email or enrollment number..."
+            placeholder="Search by name or student ID..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               className="border border-slate-300 rounded-lg px-4 py-2.5 flex-1 focus:outline-none focus:ring-2 focus:ring-brand-500"
@@ -74,49 +71,44 @@ const ManageStudents = () => {
             </select>
           </div>
           <Link
-            to="/teacher/students/add"
+            to="/students/add"
             className="bg-brand-600 hover:bg-brand-700 text-white font-medium px-5 py-2.5 rounded-lg text-center transition whitespace-nowrap"
           >
             + Add Student
           </Link>
         </div>
 
-      {message && <div className="mb-4"><Alert type={message.type} message={message.text} /></div>}
-{error && <Alert type="error" message={error} />}
-{loading && <Alert type="info" message="Loading..." />}
+        {message && <div className="mb-4"><Alert type={message.type} message={message.text} /></div>}
+        {error && <Alert type="error" message={error} />}
+        {loading && <Alert type="info" message="Loading..." />}
 
-{!loading && !error && (
-  <p className="text-sm text-slate-500 mb-3">
-    Total Students: <span className="font-semibold text-slate-700">{students.length}</span>
-  </p>
-)}
+        {!loading && !error && (
+          <p className="text-sm text-slate-500 mb-3">
+            Total Students: <span className="font-semibold text-slate-700">{students.length}</span>
+          </p>
+        )}
 
-{!loading && (
+        {!loading && (
           <div className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-x-auto">
             <table className="w-full text-sm min-w-[600px]">
               <thead className="bg-slate-50 text-slate-500 text-left">
-                <tr>
+               <tr>
+                  <th className="px-6 py-3 font-medium">Student ID</th>
                   <th className="px-6 py-3 font-medium">Name</th>
-                  <th className="px-6 py-3 font-medium">Email</th>
-                  <th className="px-6 py-3 font-medium">Enrollment</th>
+                  <th className="px-6 py-3 font-medium">Father's Name</th>
                   <th className="px-6 py-3 font-medium">Class</th>
-                  <th className="px-6 py-3 font-medium text-right">Actions</th>
                 </tr>
               </thead>
               <tbody>
                 {students.length === 0 && (
-                  <tr><td colSpan={5} className="px-6 py-8 text-center text-slate-400">No students found.</td></tr>
+                  <tr><td colSpan={4} className="px-6 py-8 text-center text-slate-400">No students found.</td></tr>
                 )}
                 {students.map((s) => (
                   <tr key={s._id} className="border-t border-slate-100">
+                    <td className="px-6 py-3">{s.studentId}</td>
                     <td className="px-6 py-3 font-medium">{s.name}</td>
-                    <td className="px-6 py-3 text-slate-500">{s.email}</td>
-                    <td className="px-6 py-3">{s.enrollmentNumber}</td>
+                    <td className="px-6 py-3 text-slate-500">{s.fatherName || "—"}</td>
                     <td className="px-6 py-3">{s.class}</td>
-                    <td className="px-6 py-3 text-right space-x-3 whitespace-nowrap">
-                      <Link to={`/teacher/students/edit/${s._id}`} className="text-brand-600 font-medium">Edit</Link>
-                      <button onClick={() => setDeleteTarget(s)} className="text-red-600 font-medium">Delete</button>
-                    </td>
                   </tr>
                 ))}
               </tbody>
@@ -124,7 +116,7 @@ const ManageStudents = () => {
           </div>
         )}
 
-        <Link to="/teacher/dashboard" className="text-brand-600 font-medium text-sm mt-6 inline-block">
+        <Link to="/dashboard" className="text-brand-600 font-medium text-sm mt-6 inline-block">
           ← Back to Dashboard
         </Link>
       </div>

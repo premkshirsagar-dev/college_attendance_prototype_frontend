@@ -34,7 +34,7 @@ const StudentDashboard = () => {
         <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 mb-6">
           <h2 className="text-xl font-bold text-slate-800">Welcome, {user?.name}</h2>
           <p className="text-slate-500 text-sm mt-1">
-            Enrollment: <span className="font-medium">{user?.enrollmentNumber}</span> &nbsp;·&nbsp; Class:{" "}
+            Student ID: <span className="font-medium">{user?.studentId}</span> &nbsp;·&nbsp; Class:{" "}           
             <span className="font-medium">{user?.class}</span>
           </p>
         </div>

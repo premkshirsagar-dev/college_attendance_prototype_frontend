@@ -1,13 +1,11 @@
-// pages/teacher/TakeAttendance.jsx
-// Teacher selects a class + date, marks each student Present/Absent, and submits.
-
+// pages/TakeAttendance.jsx
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import api from "../../api/axios";
-import Navbar from "../../components/Navbar";
-import Alert from "../../components/Alert";
+import api from "../api/axios";
+import Navbar from "../components/Navbar";
+import Alert from "../components/Alert";
+import { CLASS_OPTIONS } from "../context/classes";
 
-import { CLASS_OPTIONS } from "../../constants/classes";
 const todayISO = () => new Date().toISOString().slice(0, 10);
 
 const TakeAttendance = () => {
@@ -22,10 +20,9 @@ const TakeAttendance = () => {
     setLoading(true);
     setMessage(null);
     try {
-      const res = await api.get("/teacher/attendance/class-students", {
+      const res = await api.get("/admin/attendance/class-students", {
         params: { class: selectedClass, date },
       });
-      // Default anyone not yet marked to "Present"
       setStudents(res.data.map((s) => ({ ...s, status: s.status || "Present" })));
     } catch (err) {
       setMessage({ type: "error", text: err.response?.data?.message || "Failed to load students." });
@@ -51,7 +48,7 @@ const TakeAttendance = () => {
     setSubmitting(true);
     setMessage(null);
     try {
-      const res = await api.post("/teacher/attendance", {
+      const res = await api.post("/admin/attendance", {
         class: selectedClass,
         date,
         attendance: students.map((s) => ({ studentId: s.studentId, status: s.status })),
@@ -69,7 +66,8 @@ const TakeAttendance = () => {
     <div className="min-h-screen bg-slate-100">
       <Navbar title="Take Attendance" />
       <div className="max-w-3xl mx-auto px-4 sm:px-8 py-8">
-        <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 mb-6 flex flex-col sm:flex-row gap-4">          <div className="flex-1">
+        <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 mb-6 flex flex-col sm:flex-row gap-4">
+          <div className="flex-1">
             <label className="text-xs text-slate-500 font-medium">Class</label>
             <select
               value={selectedClass}
@@ -102,7 +100,7 @@ const TakeAttendance = () => {
               </button>
             </div>
 
-                      <div className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-x-auto mb-6">
+            <div className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-x-auto mb-6">
               <table className="w-full text-sm min-w-[480px]">
                 <thead className="bg-slate-50 text-slate-500 text-left">
                   <tr>
@@ -114,7 +112,7 @@ const TakeAttendance = () => {
                 <tbody>
                   {students.map((s) => (
                     <tr key={s.studentId} className="border-t border-slate-100">
-                      <td className="px-4 sm:px-6 py-3 whitespace-nowrap">{s.enrollmentNumber}</td>
+                      <td className="px-4 sm:px-6 py-3 whitespace-nowrap">{s.studentCode}</td>
                       <td className="px-4 sm:px-6 py-3 font-medium whitespace-nowrap">{s.name}</td>
                       <td className="px-4 sm:px-6 py-3 whitespace-nowrap">
                         <label className="inline-flex items-center gap-2 cursor-pointer select-none">
@@ -150,7 +148,7 @@ const TakeAttendance = () => {
         )}
 
         <div className="mt-6">
-          <Link to="/teacher/dashboard" className="text-brand-600 font-medium text-sm">← Back to Dashboard</Link>
+          <Link to="/dashboard" className="text-brand-600 font-medium text-sm">← Back to Dashboard</Link>
         </div>
       </div>
     </div>

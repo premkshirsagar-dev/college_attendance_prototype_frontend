@@ -37,9 +37,10 @@ const StudentProfile = () => {
           <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
             <div className="flex flex-col gap-4 text-sm">
               <Field label="Full Name" value={profile.name} />
-              <Field label="Email" value={profile.email} />
-              <Field label="Enrollment Number" value={profile.enrollmentNumber} />
+              <Field label="Student ID" value={profile.studentId} />
               <Field label="Class" value={profile.class} />
+              {profile.fatherName && <Field label="Father's Name" value={profile.fatherName} />}
+              {profile.motherName && <Field label="Mother's Name" value={profile.motherName} />}
             </div>
             <p className="text-xs text-slate-400 mt-6">
               Profile details can only be updated by your teacher/administrator.

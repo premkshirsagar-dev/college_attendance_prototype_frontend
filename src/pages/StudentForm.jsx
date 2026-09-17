@@ -1,13 +1,11 @@
-// pages/teacher/StudentForm.jsx
-// Shared Add / Edit student form. If :id is present in the URL, it's edit mode.
-
+// pages/StudentForm.jsx
 import { useEffect, useState } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
-import api from "../../api/axios";
-import Navbar from "../../components/Navbar";
-import Alert from "../../components/Alert";
+import api from "../api/axios";
+import Navbar from "../components/Navbar";
+import Alert from "../components/Alert";
+import { CLASS_OPTIONS } from "../context/classes";
 
-import { CLASS_OPTIONS } from "../../constants/classes";
 const StudentForm = () => {
   const { id } = useParams();
   const isEdit = Boolean(id);
@@ -24,7 +22,7 @@ const StudentForm = () => {
     if (!isEdit) return;
     const fetchStudent = async () => {
       try {
-        const res = await api.get(`/teacher/students/${id}`);
+        const res = await api.get(`/admin/students/${id}`);
         const { name, email, enrollmentNumber, class: studentClass } = res.data;
         setForm({ name, email, password: "", enrollmentNumber, class: studentClass });
       } catch (err) {
@@ -44,14 +42,14 @@ const StudentForm = () => {
     setSaving(true);
     try {
       if (isEdit) {
-        const { password, ...updateData } = form; // password not editable here (per spec: hashed password never shown/edited via this form)
-        await api.put(`/teacher/students/${id}`, updateData);
+        const { password, ...updateData } = form;
+        await api.put(`/admin/students/${id}`, updateData);
         setMessage({ type: "success", text: "Student updated successfully." });
       } else {
-        await api.post("/teacher/students", form);
+        await api.post("/admin/students", form);
         setMessage({ type: "success", text: "Student added successfully." });
       }
-      setTimeout(() => navigate("/teacher/students"), 900);
+      setTimeout(() => navigate("/students"), 900);
     } catch (err) {
       setMessage({ type: "error", text: err.response?.data?.message || "Save failed." });
     } finally {
@@ -93,7 +91,6 @@ const StudentForm = () => {
               >
                 {CLASS_OPTIONS.map((c) => <option key={c} value={c}>{c}</option>)}
               </select>
-
               <button
                 type="submit" disabled={saving}
                 className="bg-brand-600 hover:bg-brand-700 disabled:opacity-60 text-white font-medium py-2.5 rounded-lg transition"
@@ -104,7 +101,7 @@ const StudentForm = () => {
           )}
         </div>
 
-        <Link to="/teacher/students" className="text-brand-600 font-medium text-sm mt-6 inline-block">
+        <Link to="/students" className="text-brand-600 font-medium text-sm mt-6 inline-block">
           ← Back to Manage Students
         </Link>
       </div>
