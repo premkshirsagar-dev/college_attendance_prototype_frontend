@@ -92,8 +92,7 @@ const Login = ({ role }) => {
   );
 };
 
-<<<<<<< HEAD
+
 export default Login;
-=======
-export default Login;
->>>>>>> 983ed7865cce8dd9d90a7d37d26162848a391f98
+
+
