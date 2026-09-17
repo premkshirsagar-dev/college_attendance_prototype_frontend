@@ -1,4 +1,7 @@
 // pages/StudentForm.jsx
+// Shared Add / Edit student form for Admin. No email/password — students
+// log in with just their Student ID. Only Student ID must be unique.
+
 import { useEffect, useState } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import api from "../api/axios";
@@ -12,7 +15,7 @@ const StudentForm = () => {
   const navigate = useNavigate();
 
   const [form, setForm] = useState({
-    name: "", email: "", password: "", enrollmentNumber: "", class: CLASS_OPTIONS[0],
+    studentId: "", name: "", fatherName: "", motherName: "", class: CLASS_OPTIONS[0],
   });
   const [message, setMessage] = useState(null);
   const [loading, setLoading] = useState(isEdit);
@@ -23,8 +26,11 @@ const StudentForm = () => {
     const fetchStudent = async () => {
       try {
         const res = await api.get(`/admin/students/${id}`);
-        const { name, email, enrollmentNumber, class: studentClass } = res.data;
-        setForm({ name, email, password: "", enrollmentNumber, class: studentClass });
+        const { studentId, name, class: studentClass, fatherName, motherName } = res.data;
+        setForm({
+          studentId, name, class: studentClass,
+          fatherName: fatherName || "", motherName: motherName || "",
+        });
       } catch (err) {
         setMessage({ type: "error", text: "Failed to load student." });
       } finally {
@@ -42,8 +48,7 @@ const StudentForm = () => {
     setSaving(true);
     try {
       if (isEdit) {
-        const { password, ...updateData } = form;
-        await api.put(`/admin/students/${id}`, updateData);
+        await api.put(`/admin/students/${id}`, form);
         setMessage({ type: "success", text: "Student updated successfully." });
       } else {
         await api.post("/admin/students", form);
@@ -68,21 +73,19 @@ const StudentForm = () => {
           ) : (
             <form onSubmit={handleSubmit} className="flex flex-col gap-4">
               <input
-                name="name" placeholder="Full Name" value={form.name} onChange={handleChange} required
+                name="studentId" placeholder="Student ID" value={form.studentId} onChange={handleChange} required
                 className="border border-slate-300 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-brand-500"
               />
               <input
-                name="email" type="email" placeholder="Email Address" value={form.email} onChange={handleChange} required
+                name="name" placeholder="Student Name" value={form.name} onChange={handleChange} required
                 className="border border-slate-300 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-brand-500"
               />
-              {!isEdit && (
-                <input
-                  name="password" type="password" placeholder="Password" value={form.password} onChange={handleChange} required minLength={6}
-                  className="border border-slate-300 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-brand-500"
-                />
-              )}
               <input
-                name="enrollmentNumber" placeholder="Enrollment Number" value={form.enrollmentNumber} onChange={handleChange} required
+                name="fatherName" placeholder="Father's Name (optional)" value={form.fatherName} onChange={handleChange}
+                className="border border-slate-300 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-brand-500"
+              />
+              <input
+                name="motherName" placeholder="Mother's Name (optional)" value={form.motherName} onChange={handleChange}
                 className="border border-slate-300 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-brand-500"
               />
               <select
@@ -90,23 +93,3 @@ const StudentForm = () => {
                 className="border border-slate-300 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-brand-500"
               >
                 {CLASS_OPTIONS.map((c) => <option key={c} value={c}>{c}</option>)}
-              </select>
-              <button
-                type="submit" disabled={saving}
-                className="bg-brand-600 hover:bg-brand-700 disabled:opacity-60 text-white font-medium py-2.5 rounded-lg transition"
-              >
-                {saving ? "Loading..." : isEdit ? "Save Changes" : "Add Student"}
-              </button>
-            </form>
-          )}
-        </div>
-
-        <Link to="/students" className="text-brand-600 font-medium text-sm mt-6 inline-block">
-          ← Back to Manage Students
-        </Link>
-      </div>
-    </div>
-  );
-};
-
-export default StudentForm;
