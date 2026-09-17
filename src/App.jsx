@@ -10,10 +10,10 @@ import Unauthorized from "./pages/Unauthorized";
 import Login from "./pages/auth/Login";
 
 import StudentDashboard from "./pages/student/StudentDashboard";
-import StudentProfile from "./pages/student/StudentProfile";
+import StudentProfile from "./pages/StudentProfile";
 
 import TeacherDashboard from "./pages/teacher/TeacherDashboard";
-import ManageStudents from "./pages/teacher/ManageStudents";
+import ManageStudents from "./pages/ManageStudents";
 import TakeAttendance from "./pages/teacher/TakeAttendance";
 import AttendanceRecords from "./pages/teacher/AttendanceRecords";
 
