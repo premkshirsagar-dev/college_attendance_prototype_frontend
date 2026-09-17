@@ -10,10 +10,10 @@ import ManageTeachers from "./pages/ManageTeachers";
 import TeacherForm from "./pages/TeacherForm";
 import ManageAdmins from "./pages/ManageAdmins";
 import AdminForm from "./pages/AdminForm";
-import ManageStudents from "./pages/ManageStudents";
-import StudentForm from "./pages/StudentForm";
-import TakeAttendance from "./pages/TakeAttendance";
-import AttendanceRecords from "./pages/AttendanceRecords";
+import ManageStudents from "./pages/teacherManageStudents";
+import StudentForm from "./pages/teacher/StudentForm";
+import TakeAttendance from "./pages/teacher/TakeAttendance";
+import AttendanceRecords from "./pages/teacher/AttendanceRecords";
 
 function App() {
   const allowRegister = import.meta.env.VITE_ALLOW_ADMIN_REGISTER !== "false";
