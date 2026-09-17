@@ -3,17 +3,17 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 
-import Login from "./pages/auth/Login";
+import Login from "./src/pages/auth/Login";
 // import Register from "./pages/Register";
 // import Dashboard from "./pages/Dashboard";
-import ManageTeachers from "./pages/ManageTeachers";
-import TeacherForm from "./pages/TeacherForm";
-import ManageAdmins from "./pages/ManageAdmins";
-import AdminForm from "./pages/AdminForm";
-import ManageStudents from "./pages/teacherManageStudents";
-import StudentForm from "./pages/teacher/StudentForm";
-import TakeAttendance from "./pages/teacher/TakeAttendance";
-import AttendanceRecords from "./pages/teacher/AttendanceRecords";
+import ManageTeachers from "./src/pages/ManageTeachers";
+import TeacherForm from "./src/pages/TeacherForm";
+import ManageAdmins from "./src/pages/ManageAdmins";
+import AdminForm from "./src/pages/AdminForm";
+import ManageStudents from "./src/pages/teacher/ManageStudents";
+import StudentForm from "./src/pages/teacher/StudentForm";
+import TakeAttendance from "./src/pages/teacher/TakeAttendance";
+import AttendanceRecords from "./src/pages/teacher/AttendanceRecords";
 
 function App() {
   const allowRegister = import.meta.env.VITE_ALLOW_ADMIN_REGISTER !== "false";
