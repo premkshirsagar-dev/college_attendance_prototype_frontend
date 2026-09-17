@@ -10,7 +10,7 @@ import Unauthorized from "./pages/Unauthorized";
 import Login from "./pages/auth/Login";
 
 import StudentDashboard from "./pages/student/StudentDashboard";
-import StudentProfile from "./pages/StudentProfile";
+import StudentProfile from "./pages/student/StudentProfile";
 
 import TeacherDashboard from "./pages/teacher/TeacherDashboard";
 import ManageStudents from "./pages/ManageStudents";
