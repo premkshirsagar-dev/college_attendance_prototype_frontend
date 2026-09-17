@@ -57,7 +57,7 @@ const ManageStudents = () => {
         <div className="flex flex-col sm:flex-row justify-between gap-4 mb-6">
           <div className="flex flex-col sm:flex-row gap-3 flex-1">
             <input
-              placeholder="Search by name, email or enrollment number..."
+            placeholder="Search by name or student ID..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               className="border border-slate-300 rounded-lg px-4 py-2.5 flex-1 focus:outline-none focus:ring-2 focus:ring-brand-500"
