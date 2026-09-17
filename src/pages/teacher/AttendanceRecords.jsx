@@ -76,7 +76,7 @@ const AttendanceRecords = () => {
   const visibleRankings = rankings.filter((r) => {
     if (!rankSearch) return true;
     const q = rankSearch.toLowerCase();
-    return r.name.toLowerCase().includes(q) || r.enrollmentNumber.toLowerCase().includes(q);
+    return r.name.toLowerCase().includes(q) || r.studentCode.toLowerCase().includes(q);
   });
 
   return (
@@ -211,7 +211,7 @@ const AttendanceRecords = () => {
               </div>
 
               <input
-                placeholder="Search by name or enrollment number..."
+            placeholder="Search by name, email or student ID..."
                 value={rankSearch}
                 onChange={(e) => setRankSearch(e.target.value)}
                 className="border border-slate-300 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-brand-500"
@@ -240,8 +240,7 @@ const AttendanceRecords = () => {
                     {visibleRankings.map((r, index) => (
                       <tr key={r.studentId} className="border-t border-slate-100">
                         <td className="px-6 py-3 text-slate-400 font-medium">#{index + 1}</td>
-                        <td className="px-6 py-3">{r.enrollmentNumber}</td>
-                        <td className="px-6 py-3 font-medium">{r.name}</td>
+V                        <td className="px-6 py-3 font-medium">{r.name}</td>
                         <td className="px-6 py-3 text-slate-500">{r.present} / {r.total}</td>
                         <td className="px-6 py-3">
                           <span className={`px-2.5 py-1 rounded-full text-xs font-medium ${
