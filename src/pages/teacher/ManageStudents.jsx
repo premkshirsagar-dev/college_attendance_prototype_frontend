@@ -1,10 +1,10 @@
 // pages/ManageStudents.jsx
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import api from "../api/axios";
-import Navbar from "../components/Navbar";
-import Alert from "../components/Alert";
-import { CLASS_OPTIONS as ALL_CLASSES } from "../context/classes";
+import api from "../../api/axios";
+import Navbar from "../../components/Navbar";
+import Alert from "../../components/Alert";
+import { CLASS_OPTIONS as ALL_CLASSES } from "../../context/classes";
 
 const CLASS_OPTIONS = ["All Classes", ...ALL_CLASSES];
 
