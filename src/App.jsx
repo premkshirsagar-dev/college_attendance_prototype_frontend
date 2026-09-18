@@ -11,6 +11,7 @@ import { AuthProvider } from "./context/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 
 import Landing from "./pages/Landing";
+import ManageStudents from "./pages/ManageStudents";
 import Unauthorized from "./pages/Unauthorized";
 import Login from "./pages/auth/Login";
 
@@ -18,7 +19,6 @@ import StudentDashboard from "./pages/student/StudentDashboard";
 import StudentProfile from "./pages/student/StudentProfile";
 
 import TeacherDashboard from "./pages/teacher/TeacherDashboard";
-import ManageStudents from "./pages/student/ManageStudents";
 import TakeAttendance from "./pages/teacher/TakeAttendance";
 import AttendanceRecords from "./pages/teacher/AttendanceRecords";
 import MidwayLeavers from "./pages/teacher/MidwayLeavers";
