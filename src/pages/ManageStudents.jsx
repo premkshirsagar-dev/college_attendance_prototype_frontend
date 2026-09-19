@@ -1,14 +1,14 @@
-// pages/teacher/ManageStudents.jsx
+// pages/ManageStudents.jsx
 // VIEW-ONLY student list for Teacher — needed to see who's in a class
 // before taking attendance. Add/Edit/Delete are Admin-only (see the
 // separate admin-frontend app's ManageStudents page).
 
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import api from "../../api/axios";
-import Navbar from "../../components/Navbar";
-import Alert from "../../components/Alert";
-import { CLASS_OPTIONS as ALL_CLASSES } from "../../context/classes";
+import api from "../api/axios";
+import Navbar from "../components/Navbar";
+import Alert from "../components/Alert";
+import { CLASS_OPTIONS as ALL_CLASSES } from "../context/classes";
 
 const CLASS_OPTIONS = ["All Classes", ...ALL_CLASSES];
 
