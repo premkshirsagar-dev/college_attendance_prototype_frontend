@@ -1,4 +1,7 @@
-// pages/AttendanceRecords.jsx
+// pages/teacher/AttendanceRecords.jsx
+// Two tabs: filterable attendance history (Records), and a ranked
+// leaderboard of students by attendance % for a month or year (Rankings).
+
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import api from "../../api/axios";
@@ -38,7 +41,7 @@ const AttendanceRecords = () => {
       if (filters.class) params.class = filters.class;
       if (filters.date) params.date = filters.date;
       if (filters.status) params.status = filters.status;
-      const res = await api.get("/admin/attendance", { params });
+      const res = await api.get("/teacher/attendance", { params });
       setRecords(res.data);
     } catch (err) {
       setError(err.response?.data?.message || "Failed to load records.");
@@ -54,7 +57,7 @@ const AttendanceRecords = () => {
       const params = { class: rankClass };
       if (periodType === "month") params.month = month;
       else params.year = year;
-      const res = await api.get("/admin/attendance/rankings", { params });
+      const res = await api.get("/teacher/attendance/rankings", { params });
       setRankings(res.data);
     } catch (err) {
       setRankError(err.response?.data?.message || "Failed to load rankings.");
@@ -138,11 +141,11 @@ const AttendanceRecords = () => {
                 <table className="w-full text-sm min-w-[500px]">
                   <thead className="bg-slate-50 text-slate-500 text-left">
                     <tr>
-                      <th className="px-6 py-3 font-medium">Enrollment</th>
-                      <th className="px-6 py-3 font-medium">Student</th>
-                      <th className="px-6 py-3 font-medium">Class</th>
-                      <th className="px-6 py-3 font-medium">Date</th>
-                      <th className="px-6 py-3 font-medium">Status</th>
+                      <th className="px-4 sm:px-6 py-3 font-medium whitespace-nowrap">Student ID</th>
+                      <th className="px-4 sm:px-6 py-3 font-medium whitespace-nowrap">Student</th>
+                      <th className="px-4 sm:px-6 py-3 font-medium whitespace-nowrap">Class</th>
+                      <th className="px-4 sm:px-6 py-3 font-medium whitespace-nowrap">Date</th>
+                      <th className="px-4 sm:px-6 py-3 font-medium whitespace-nowrap">Status</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -151,11 +154,11 @@ const AttendanceRecords = () => {
                     )}
                     {records.map((r) => (
                       <tr key={r._id} className="border-t border-slate-100">
-                        <td className="px-6 py-3">{r.studentId?.enrollmentNumber}</td>
-                        <td className="px-6 py-3 font-medium">{r.studentId?.name}</td>
-                        <td className="px-6 py-3">{r.class}</td>
-                        <td className="px-6 py-3">{r.date}</td>
-                        <td className="px-6 py-3">
+                        <td className="px-4 sm:px-6 py-3 whitespace-nowrap">{r.studentId?.studentId}</td>
+                        <td className="px-4 sm:px-6 py-3 font-medium whitespace-nowrap">{r.studentId?.name}</td>
+                        <td className="px-4 sm:px-6 py-3 whitespace-nowrap">{r.class}</td>
+                        <td className="px-4 sm:px-6 py-3 whitespace-nowrap">{r.date}</td>
+                        <td className="px-4 sm:px-6 py-3 whitespace-nowrap">
                           <span className={`px-2.5 py-1 rounded-full text-xs font-medium ${
                             r.status === "Present" ? "bg-green-100 text-green-700" : "bg-red-100 text-red-700"
                           }`}>
@@ -211,7 +214,7 @@ const AttendanceRecords = () => {
               </div>
 
               <input
-            placeholder="Search by name, email or student ID..."
+                placeholder="Search by name or Student ID..."
                 value={rankSearch}
                 onChange={(e) => setRankSearch(e.target.value)}
                 className="border border-slate-300 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-brand-500"
@@ -226,11 +229,11 @@ const AttendanceRecords = () => {
                 <table className="w-full text-sm min-w-[560px]">
                   <thead className="bg-slate-50 text-slate-500 text-left">
                     <tr>
-                      <th className="px-6 py-3 font-medium">Rank</th>
-                      <th className="px-6 py-3 font-medium">Enrollment</th>
-                      <th className="px-6 py-3 font-medium">Student</th>
-                      <th className="px-6 py-3 font-medium">Present / Total</th>
-                      <th className="px-6 py-3 font-medium">Attendance %</th>
+                      <th className="px-4 sm:px-6 py-3 font-medium whitespace-nowrap">Rank</th>
+                      <th className="px-4 sm:px-6 py-3 font-medium whitespace-nowrap">Student ID</th>
+                      <th className="px-4 sm:px-6 py-3 font-medium whitespace-nowrap">Student</th>
+                      <th className="px-4 sm:px-6 py-3 font-medium whitespace-nowrap">Present / Total</th>
+                      <th className="px-4 sm:px-6 py-3 font-medium whitespace-nowrap">Attendance %</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -239,10 +242,11 @@ const AttendanceRecords = () => {
                     )}
                     {visibleRankings.map((r, index) => (
                       <tr key={r.studentId} className="border-t border-slate-100">
-                        <td className="px-6 py-3 text-slate-400 font-medium">#{index + 1}</td>
-V                        <td className="px-6 py-3 font-medium">{r.name}</td>
-                        <td className="px-6 py-3 text-slate-500">{r.present} / {r.total}</td>
-                        <td className="px-6 py-3">
+                        <td className="px-4 sm:px-6 py-3 text-slate-400 font-medium whitespace-nowrap">#{index + 1}</td>
+                        <td className="px-4 sm:px-6 py-3 whitespace-nowrap">{r.studentCode}</td>
+                        <td className="px-4 sm:px-6 py-3 font-medium whitespace-nowrap">{r.name}</td>
+                        <td className="px-4 sm:px-6 py-3 text-slate-500 whitespace-nowrap">{r.present} / {r.total}</td>
+                        <td className="px-4 sm:px-6 py-3 whitespace-nowrap">
                           <span className={`px-2.5 py-1 rounded-full text-xs font-medium ${
                             r.percentage >= 75 ? "bg-green-100 text-green-700"
                               : r.percentage >= 50 ? "bg-yellow-100 text-yellow-700"
@@ -260,7 +264,7 @@ V                        <td className="px-6 py-3 font-medium">{r.name}</td>
           </>
         )}
 
-        <Link to="/dashboard" className="text-brand-600 font-medium text-sm mt-6 inline-block">
+        <Link to="/teacher/dashboard" className="text-brand-600 font-medium text-sm mt-6 inline-block">
           ← Back to Dashboard
         </Link>
       </div>
